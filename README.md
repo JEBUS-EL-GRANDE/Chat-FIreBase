@@ -36,9 +36,10 @@ inicia servidor Flask:
 ## Configuracion2 Con el Firebase
 ve a la web consolefirebase  y crea un proyecto
 - En menu izquierdo> Databases & Storage> Create Database>next>next
+- En menu ezquierdo> security> authentication> sing-in method> Email/password> activa el 1er y guarda
 - En menu izquierdo> settings> General> App web> (copia todo el const firebaseConfig = {cosas}) y sustituyelo por el que esta en el login.html
 
 - En menu izquierdo> settings> Service accounts> Python> Generate new private key  (sustituye este archivo credenciales.json por lo que tenga el nuevo que se descargo)
 
--copia el (databaseURL: "link") del firebaseconfig y pegalo en app.py (linea 11 aprox)
+-copia el (databaseURL: "link") del const firebaseconfig y pegalo en app.py (linea 11 aprox)
 ## Uso
