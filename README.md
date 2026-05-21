@@ -2,6 +2,7 @@
 
 ## Integrantes
 proyecto desarrollado por los estudiantes 
+  
    -Cordero
 
    -Pedro
@@ -16,11 +17,13 @@ comandos para probar este proyecto con firebase:
 
 Crea un entorno virtual:
    - **python -m venv venv**
+
 Activa el entorno virtual:
     (linux)
    - **source venv/bin/activate**
     (windows)
    - **venv\Scripts\activate**
+
 Instala las dependencias requeridas:
    - **pip install -r requirements.txt**
 
