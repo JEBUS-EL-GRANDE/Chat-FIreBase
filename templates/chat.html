@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylechat.css') }}" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script>
+		let previousMessages = null;
+		const user = localStorage.getItem('username')
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+			const tipo = document.getElementById('tipo').value;
+			console.log(tipo);
+            const response = await fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+				body: JSON.stringify({ user, message, tipo })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('message').value = '';
+                loadMessages(); // Recargar mensajes después de enviar
+            } else {
+                alert('Error enviando el mensaje');
+            }
+        }
+
+        async function loadMessages() {
+			try {
+            	const response = await fetch('/get_messages');
+            	const messages = await response.json();
+
+            	if (JSON.stringify(messages) !== JSON.stringify(previousMessages)) {
+                	const messageList = document.getElementById('messageList');
+                	messageList.innerHTML = ''; // Limpiar mensajes previos
+
+                	for (const key in messages) {
+                    	const msg = messages[key];
+                    	const item = document.createElement('li');
+						item.textContent = `${msg.user}: ${msg.message} | [${msg.tipo}]`; ;
+                    	messageList.appendChild(item);
+                	}
+                	previousMessages = messages;
+				}
+			} catch (error) {
+            	console.error('Error cargando mensajes:', error);
+        	}
+		}
+
+    window.onload = () => {
+        const name = document.querySelector("#username");
+        name.innerHTML = user;
+
+        loadMessages();
+        setInterval(loadMessages, 500); 
+    };
+    </script>
+</head>
+<body>
+    <h1>Chat</h1>
+    <p>Bienvenido, <span id="username">Usuario</span></p>
+    <ul  class="chat-messages" id="messageList"></ul>
+	<select name="tipo" id="tipo">
+		<option value="requerimiento">requerimiento</option>
+		<option value="incidente">incidente</option>
+		<option value="problema">problema</option>
+		<option value="solucion">solucion</option>
+	</select>
+    <input type="text" id="message" class="chat-input" placeholder="Tu mensaje" />
+    <button class="chat-send-button" onclick="sendMessage()">Enviar</button>
+</body>
+</html>
