@@ -19,10 +19,13 @@ Crea un entorno virtual:
    - **python -m venv venv**
 
 Activa el entorno virtual:
-    (linux)
-   - **source venv/bin/activate**
-    (windows)
-   - **venv\Scripts\activate**
+  - (linux) 
+    
+    **source venv/bin/activate**
+    
+  - (windows) 
+    
+    **venv\Scripts\activate**
 
 Instala las dependencias requeridas:
    - **pip install -r requirements.txt**
