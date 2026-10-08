@@ -27,54 +27,33 @@ ve a la web consolefirebase  y crea un proyecto
 
 ## Instalacion Y configuracion local en diferentes Sistemas Operativos
 
-<span style="color: white">instalacion en windows</span><img src="readMeIMG/windows.png" width="20" height="20">
+<span style="color: white">instalacion en windows: </span><img src="readMeIMG/windows.png" width="20" height="20">
 
 ```bash
    venv\Scripts\activate
+   pip install -r requirements.txt                          #Instala las dependencias requeridas
+
+   python app.py                                            #Inicia servidor Flask:
 ```
-### Instala las dependencias requeridas:
-```bash
-   - **pip install -r requirements.txt
-```
-### inicia servidor Flask:
-```bash
-   python app.py
-```
-<span style="color: white">instalacion en Arch linux</span><img src="readMeIMG/arch.png" width="20" height="20">
+<span style="color: white">instalacion en Arch linux: </span><img src="readMeIMG/arch-linux.svg" width="20" height="20">
 
 ```bash
 sudo pacman -S python python-pip
-```
-### Dependencias del proyecto
-```bash
-pip install -r requirements.txt
-```
-### Entorno virtual
-```bash
-python -m venv venv
+pip install -r requirements.txt                             # Dependencias del proyecto
+python -m venv venv                                         # Entorno virtual
 source venv/bin/activate
-```
-### Ejecutar
-```bash
-python app.py
+
+python app.py                                               # Ejecutar
 ```
 
-<span style="color: yellow" style="font-size: 100px">instalacion en Debian</span><img src="readMeIMG/debian.png" width="20" height="20">
+<span style="color: yellow" style="font-size: 100px">instalacion en Debian: </span><img src="readMeIMG/debian.svg" width="20" height="20">
 
 ```bash
 sudo apt update
 sudo apt install python3 python3-pip python3-venv
-```
-### Dependencias del proyecto
-```bash
-pip install -r requirements.txt
-```
-### Entorno virtual
-```bash
-python3 -m venv venv
+pip install -r requirements.txt                             # Dependencias del proyecto
+python3 -m venv venv                                        # Entorno virtual
 source venv/bin/activate
-```
-### Ejecutar
-```bash
-python app.py
+
+python app.py                                               # Ejecutar
 ```
