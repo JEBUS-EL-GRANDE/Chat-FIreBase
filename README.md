@@ -1,7 +1,7 @@
 # Chat en tiempo real
 
 ### Proyecto compilado
-![imagen de mis practicas](readMeIMG/img1.jpeg "imagen de mi mis practicas en postgreSQL")
+![video de proyecto ya compilado](readMeIMG/compilado.gif "video de mi proyecto ya compilado")
 
 ## Integrantes
 proyecto desarrollado por los estudiantes 
@@ -16,7 +16,7 @@ proyecto desarrollado por los estudiantes
 - [Uso](#uso)
 
 
-## Configuracion Con el Firebase <img src="readMeIMG/firebase.svg" width="20" height="20">
+## Configuracion Con el Firebase <img src="readMeIMG/firebase.svg2" width="20" height="20">
 ve a la web consolefirebase  y crea un proyecto
 - En menu izquierdo> Databases & Storage> Realtime Database> Create Database> next> next
 - En menu ezquierdo> security> authentication> next> sing-in method> Email/password> activa el 1er y guarda
@@ -27,17 +27,19 @@ ve a la web consolefirebase  y crea un proyecto
 
 ## Instalacion Y configuracion local en diferentes Sistemas Operativos
 
-<span style="color: white">instalacion en windows: </span><img src="readMeIMG/windows.png" width="20" height="20">
+
+<h3 style="color: blue; font-size: 50px">Instalación en Windows: <img src="readMeIMG/windows.svg" width="20" height="20"></h3> 
 
 ```bash
-   venv\Scripts\activate
    pip install -r requirements.txt                          #Instala las dependencias requeridas
+   venv\Scripts\activate
 
    python app.py                                            #Inicia servidor Flask:
 ```
-<span style="color: white">instalacion en Arch linux: </span><img src="readMeIMG/arch-linux.svg" width="20" height="20">
+<h3>instalacion en Arch linux: <img src="readMeIMG/arch-linux.svg" width="20" height="20"></h3>
 
 ```bash
+sudo pacman -Syu
 sudo pacman -S python python-pip
 pip install -r requirements.txt                             # Dependencias del proyecto
 python -m venv venv                                         # Entorno virtual
@@ -46,7 +48,7 @@ source venv/bin/activate
 python app.py                                               # Ejecutar
 ```
 
-<span style="color: yellow" style="font-size: 100px">instalacion en Debian: </span><img src="readMeIMG/debian.svg" width="20" height="20">
+<h3> Instalacion en debian: <img src="readMeIMG/debian.svg" width="20" height="20"></h3>
 
 ```bash
 sudo apt update

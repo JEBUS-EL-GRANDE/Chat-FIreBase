@@ -6,6 +6,7 @@
     <script>
 		let previousMessages = null;
 		const user = localStorage.getItem('username')
+
         async function sendMessage() {
             const message = document.getElementById('message').value;
 			const tipo = document.getElementById('tipo').value;
@@ -27,27 +28,71 @@
             }
         }
 
+        function getUserColor(username) {
+            const colors = [
+                '#4361ee',
+                '#e63946',
+                '#2a9d8f',
+                '#f4a261',
+                '#9b5de5',
+                '#0081a7',
+                '#e76f51',
+                '#06a77d',
+                '#d62828',
+                '#7209b7'
+            ];
+            let hash = 0;
+            for (let i = 0; i < username.length; i++) {
+                hash = username.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return colors[Math.abs(hash) % colors.length];
+        }
+
         async function loadMessages() {
-			try {
-            	const response = await fetch('/get_messages');
-            	const messages = await response.json();
+        try {
+            const response = await fetch('/get_messages');
+            const messages = await response.json();
 
-            	if (JSON.stringify(messages) !== JSON.stringify(previousMessages)) {
-                	const messageList = document.getElementById('messageList');
-                	messageList.innerHTML = ''; // Limpiar mensajes previos
+        if (JSON.stringify(messages) !== JSON.stringify(previousMessages)) {
+            const messageList = document.getElementById('messageList');
+            messageList.innerHTML = '';
+            for (const key in messages) {
+                const msg = messages[key];
+                const item = document.createElement('li');
 
-                	for (const key in messages) {
-                    	const msg = messages[key];
-                    	const item = document.createElement('li');
-						item.textContent = `${msg.user}: ${msg.message} | [${msg.tipo}]`; ;
-                    	messageList.appendChild(item);
-                	}
-                	previousMessages = messages;
-				}
-			} catch (error) {
-            	console.error('Error cargando mensajes:', error);
-        	}
-		}
+                // Parte izquierda: usuario + mensaje
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
+                const username = document.createElement('span');
+                username.classList.add('uname');
+                username.textContent = msg.user + ':';
+
+                // Generar un color fijo para cada usuario
+                username.style.color = getUserColor(msg.user);
+                const messageText = document.createElement('span');
+                messageText.classList.add('message-text');
+                messageText.textContent = ' ' + msg.message;
+                messageContent.appendChild(username);
+                messageContent.appendChild(messageText);
+
+                // Parte derecha: tipo de mensaje
+                const tipo = document.createElement('span');
+                tipo.classList.add('message-type');
+                tipo.textContent = `[${msg.tipo}]`;
+
+                item.appendChild(messageContent);
+                item.appendChild(tipo);
+
+                messageList.appendChild(item);
+            }
+
+            previousMessages = messages;
+        }
+
+    } catch (error) {
+        console.error('Error cargando mensajes:', error);
+    }
+}
 
     window.onload = () => {
         const name = document.querySelector("#username");
@@ -59,16 +104,20 @@
     </script>
 </head>
 <body>
+    <a href="/login" class="login-link">Regresar al login</a>
+
     <h1>Chat</h1>
     <p>Bienvenido, <span id="username">Usuario</span></p>
-    <ul  class="chat-messages" id="messageList"></ul>
-	<select name="tipo" id="tipo">
-		<option value="requerimiento">requerimiento</option>
-		<option value="incidente">incidente</option>
-		<option value="problema">problema</option>
-		<option value="solucion">solucion</option>
-	</select>
-    <input type="text" id="message" class="chat-input" placeholder="Tu mensaje" />
-    <button class="chat-send-button" onclick="sendMessage()">Enviar</button>
+    <ul class="chat-messages" id="messageList"></ul>
+    <div class="chat-side">
+        <input type="text" id="message" class="chat-input" placeholder="Tu mensaje" />
+        <button class="chat-send-button" onclick="sendMessage()">Enviar</button>
+        <select name="tipo" id="tipo">
+            <option value="requerimiento">requerimiento</option>
+            <option value="incidente">incidente</option>
+            <option value="problema">problema</option>
+            <option value="solucion">solucion</option>
+        </select>
+    </div>
 </body>
 </html>
