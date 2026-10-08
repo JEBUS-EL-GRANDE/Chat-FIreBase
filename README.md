@@ -16,7 +16,7 @@ proyecto desarrollado por los estudiantes
 - [Uso](#uso)
 
 
-## Configuracion Con el Firebase <img src="readMeIMG/firebase.svg2" width="20" height="20">
+## Configuracion Con el Firebase <img src="readMeIMG/firebase.svg" width="20" height="20">
 ve a la web consolefirebase  y crea un proyecto
 - En menu izquierdo> Databases & Storage> Realtime Database> Create Database> next> next
 - En menu ezquierdo> security> authentication> next> sing-in method> Email/password> activa el 1er y guarda
